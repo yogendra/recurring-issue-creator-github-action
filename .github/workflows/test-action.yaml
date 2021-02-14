@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Create daily issues    
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: create
       id: create
       uses: ./
