@@ -1,0 +1,18 @@
+on: [push]
+
+name: Testing my flow on push 
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    name: Create daily issues
+    steps:
+    - name: create
+      id: create
+      uses: ./
+      with:
+        label: 'repeat daily'
+        frequency: 1d
+    # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.create.outputs.issues }}"
+
