@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: yogendra/recurring-issue-creator-github-action@v1.0.12
+      uses: docker://ghcr.io/yogendra/recurring-issue-creator-github-action@v1.0.12
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
