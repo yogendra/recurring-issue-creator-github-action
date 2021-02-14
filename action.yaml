@@ -1,16 +1,18 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Recurring Issue Creator'
+description: |
+  This action re-creates/copies an issue
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  label:
+    description: label to lookup for (repeat daily, repeat monthly, etc.)
     required: true
-    default: 'World'
+  frequency:
+    description: frequency of reoccurance (1d,1w,1m,3m,1y,etc)
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  issues:
+    description: Issues selected for re-creation
 runs:
-  using: 'docker'
-  image: docker://ghcr.io/yogendra/recurring-issue-creator-github-action:v1.0.14
-  args:
-    - ${{ inputs.who-to-greet }}
+  using: 'node12'
+  main: 'dist/index.js'
+
