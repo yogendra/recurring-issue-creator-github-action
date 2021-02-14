@@ -4,21 +4,15 @@ on:
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-name: Create Release
+name: Release on Tagging
 
 jobs:
-  checkout:
-    name: Create Release
+  release:
+    name: Create release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-  release:
-    name: Create release
-    needs: checkout
-    runs-on: ubuntu-latest
-    steps:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -34,11 +28,12 @@ jobs:
           draft: false
           prerelease: false
 
-  publish-image:
-    needs: checkout
-    name: Publish image
+  push:
+    name: Push Docker Image to Github
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Push to Github Packages
         uses: docker/build-push-action@v1
         with:
