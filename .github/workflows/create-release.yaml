@@ -7,12 +7,18 @@ on:
 name: Create Release
 
 jobs:
-  build:
+  checkout:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+  release:
+    name: Create release
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -27,6 +33,12 @@ jobs:
             - Second Change
           draft: false
           prerelease: false
+
+  publish-image:
+    needs: checkout
+    name: Publish image
+    runs-on: ubuntu-latest
+    steps:
       - name: Push to Github Packages
         uses: docker/build-push-action@v1
         with:
