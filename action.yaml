@@ -11,6 +11,6 @@ outputs:
     description: 'The time we greeted you'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: ghcr.io/yogendra/recurring-issue-creator-github-action:v1.0.11
   args:
     - ${{ inputs.who-to-greet }}
