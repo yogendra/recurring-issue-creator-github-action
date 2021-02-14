@@ -37,7 +37,7 @@ jobs:
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: yogendra/recurring-issue-creator-github-action # list of Docker images to use as base name for tags
+          images: ghcr.ioyogendra/recurring-issue-creator-github-action
           tag-sha: true # add git short SHA as Docker tag
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
